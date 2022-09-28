@@ -1,8 +1,8 @@
-#include "../include/bankSystem.h"
+// #include "../include/bankSystem.h"
 
 #include <catch2/catch_test_macros.hpp>
 
-TEST_CASE("Bank System test function is 2 (pass)", "[single-file]")
+TEST_CASE("Blank test", "[multi-file:3]")
 {
     // BankSystem system;
     // REQUIRE(system.testFunc() == 2);
