@@ -1,6 +1,8 @@
 #ifndef BANK_SYSTEM_H
 #define BANK_SYSTEM_H
 
+#include "accountManager.h"
+
 /**
  * @brief This class contains the main functionalities of Bank.
  */
@@ -12,14 +14,8 @@ public:
      */
     // BankSystem();
 
-    /**
-     * @brief This is a test method for unit testing.
-     *
-     * @return integer.
-     */
-    static inline int testFunc() { return 1 + 1; }
-
 private:
+    AccountManager userAccount;
 };
 
 #endif

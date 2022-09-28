@@ -31,7 +31,7 @@ include(cmake/CPM.cmake)
 CPMAddPackage("gh:catchorg/Catch2@3.1.0")
 
 # Add tests
-add_executable(test test/testBankSystem.cpp)
+add_executable(test test/testBankSystem.cpp test/testAccountManager.cpp)
 target_include_directories(test PRIVATE include)
 target_link_libraries(test PRIVATE Catch2::Catch2WithMain)
 cotire(test)
