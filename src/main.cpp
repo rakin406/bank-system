@@ -1,7 +1,3 @@
-#include <iostream>
+#include "../include/bankSystem.h"
 
-int main()
-{
-    std::cout << "Hello World\n";
-    return 0;
-}
+int main() { return 0; }
