@@ -21,20 +21,25 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(cotire)
 
-# Add main source files
-add_executable(${PROJECT_NAME} src/main.cpp)
-target_include_directories(${PROJECT_NAME} PRIVATE include)
-cotire(${PROJECT_NAME})
-
 # Download unit testing framework
 include(cmake/CPM.cmake)
 CPMAddPackage("gh:catchorg/Catch2@3.1.0")
 
-# Add tests
-add_executable(test test/testBankSystem.cpp test/testAccountManager.cpp)
-target_include_directories(test PRIVATE include)
-target_link_libraries(test PRIVATE Catch2::Catch2WithMain)
-cotire(test)
+# Public libraries needed for both main executable and tests
+add_library(lib src/accountManager.cpp)
+
+# Make executable link against library
+add_executable(${PROJECT_NAME} src/main.cpp)
+target_include_directories(${PROJECT_NAME} PUBLIC include)
+target_link_libraries(${PROJECT_NAME} PUBLIC lib)
+
+# Same here for tests
+add_executable(tests test/testAccountManager.cpp test/testBankSystem.cpp)
+target_link_libraries(tests PUBLIC lib)
+target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
+
+# Speed up both builds
+cotire(${PROJECT_NAME} tests)
 
 if (MSVC)
     # Warning level 4 and all warnings as errors
