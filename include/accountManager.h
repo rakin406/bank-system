@@ -11,6 +11,13 @@
 class AccountManager
 {
 public:
+    struct Account
+    {
+        std::string_view name{};        // Name of client
+        std::string_view birthDate{};   // Birth date of client
+        std::string_view phoneNumber{}; // Phone number of client
+    };
+
     /**
      * @brief Default constructor for Account Manager initialization.
      */
@@ -26,7 +33,7 @@ public:
     /**
      * @brief Set birth date.
      */
-    void setBirthDate();
+    // void setBirthDate();
 
     /**
      * @brief Get phone number.
@@ -38,15 +45,37 @@ public:
     /**
      * @brief Set phone number.
      */
-    void setPhoneNumber();
+    // void setPhoneNumber();
+
+    /**
+     * @brief Create bank account with necessary information.
+     *
+     * @param account Account structure containing information about the client.
+     */
+    void createAccount(Account account);
 
     [[nodiscard]] bool isEligible() const;
 
 private:
     // std::string_view password;  // TODO: Future idea
-    std::string_view m_birthDate{}; // Birth date of the user
-    int m_phoneNumber{};            // Phone number of the user
-    bool m_eligible{};              // Boolean for bank allowance
+    Account account;   // Client account
+    bool m_eligible{}; // Boolean for bank allowance
+
+    /**
+     * @brief Return true if birth date is valid.
+     *
+     * @return boolean.
+     */
+    bool isBirthDateValid();
+
+    /**
+     * @brief Return true if phone number is valid.
+     *
+     * @return boolean.
+     */
+    bool isPhoneNumberValid();
+
+    // void makeEligible();
 };
 
 #endif
