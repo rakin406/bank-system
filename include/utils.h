@@ -1,14 +1,14 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <string>
+#include <string_view>
 
 namespace utils
 {
     // Trim functions
-    std::string ltrim(const std::string& s);
-    std::string rtrim(const std::string& s);
-    std::string trim(const std::string& s);
+    std::string_view ltrim(std::string_view str);
+    std::string_view rtrim(std::string_view str);
+    std::string_view trim(std::string_view str);
 
 } // namespace utils
 
