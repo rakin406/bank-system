@@ -36,7 +36,7 @@ public:
      *
      * @param account Account structure containing information about the client.
      */
-    void createAccount(const Account& account);
+    void create(const Account& account);
 
     /**
      * @brief Return true if account is eligible for bank.
@@ -49,31 +49,6 @@ private:
     // std::string_view password;  // TODO: Future idea
     Account m_account; // Client account
     bool m_eligible{}; // Boolean for bank allowance
-
-    /**
-     * @brief Format and clean the account informations.
-     *
-     * @param account.
-     */
-    void formatAccountInfo(const Account& account);
-
-    // unsigned int getAgeFromBirthDate();
-
-    /**
-     * @brief Return true if birth date is valid.
-     *
-     * @return boolean.
-     */
-    bool isBirthDateValid();
-
-    /**
-     * @brief Return true if phone number is valid.
-     *
-     * @return boolean.
-     */
-    bool isPhoneNumberValid();
-
-    // void makeEligible();
 };
 
 #endif
