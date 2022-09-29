@@ -2,8 +2,6 @@
 #include "../include/account.h"
 #include "../include/utils.h"
 
-Bank::Bank() { m_country = utils::net::getLocalCountry(); }
-
 bool Bank::createAccount(Account& account)
 {
     // Remove leading and trailing white spaces in account information

@@ -14,11 +14,6 @@ class Bank
 {
 public:
     /**
-     * @brief Default constructor for Bank initialization.
-     */
-    Bank();
-
-    /**
      * @brief Create bank account with necessary information.
      *
      * @param account Account structure containing information about the client.
@@ -35,13 +30,12 @@ public:
     [[nodiscard]] bool isEligible() const;
 
 private:
-    // std::string_view password;  // TODO: Future idea
+    // std::string_view password;
     Account m_account; // Client account
     bool m_eligible{}; // Boolean for bank allowance
     // int m_deposit;
     // int m_withdrawal;
     // int m_savings;
-    std::string_view m_country{}; // Local country
 };
 
 #endif
