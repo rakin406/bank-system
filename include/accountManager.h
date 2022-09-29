@@ -58,6 +58,15 @@ private:
     bool m_eligible{}; // Boolean for bank allowance
 
     /**
+     * @brief Format and clean the account informations.
+     *
+     * @param account.
+     */
+    void formatAccountInfo(const Account& account);
+
+    // unsigned int getAgeFromBirthDate();
+
+    /**
      * @brief Return true if birth date is valid.
      *
      * @return boolean.

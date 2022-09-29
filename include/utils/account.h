@@ -6,14 +6,6 @@
 
 namespace utils::account
 {
-    // unsigned int getAgeFromBirthDate();
-
-    /**
-     * @brief Format and clean the account informations.
-     *
-     * @param account.
-     */
-    Account formatAccountInfo(const Account& account);
 
 } // namespace utils::account
 
