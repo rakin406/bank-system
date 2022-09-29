@@ -1,32 +1,30 @@
 #include "../include/accountManager.h"
 #include "../include/utils.h"
 
+#include <string_view>
+
 namespace
 {
     constexpr unsigned int MINIMUM_AGE = 18;
 
-    // TODO: Implement this
-    unsigned int getAgeFromBirthDate(const Account& account) {}
-
-    // TODO: Implement this
     /**
-     * @brief Return true if birth date is valid.
+     * @brief Return true if client age is valid.
      *
-     * @param account Client account.
+     * @param age Client age.
      *
      * @return boolean.
      */
-    bool isBirthDateValid(const Account& account) {}
+    bool isAgeValid(unsigned int age) { return age >= MINIMUM_AGE; }
 
     // TODO: Implement this
     /**
      * @brief Return true if phone number is valid.
      *
-     * @param account Client account.
+     * @param phoneNumber Phone number of client.
      *
      * @return boolean.
      */
-    bool isPhoneNumberValid(const Account& account) {}
+    bool isPhoneNumberValid(std::string_view phoneNumber) {}
 
     /**
      * @brief Return true if all account informations are valid.
@@ -37,13 +35,16 @@ namespace
      */
     bool isAccountValid(const Account& account)
     {
-        return isBirthDateValid(account) && isPhoneNumberValid(account);
+        return isAgeValid(account.age) &&
+               isPhoneNumberValid(account.phoneNumber);
     }
 
     /**
      * @brief Format and clean the account informations.
      *
      * @param Client account.
+     *
+     * @return account Account struct.
      */
     Account getFormattedInfo(Account account)
     {
@@ -51,7 +52,6 @@ namespace
 
         // Clean up leading and trailing white spaces
         account.name = trim(account.name);
-        account.birthDate = trim(account.birthDate);
         account.phoneNumber = trim(account.phoneNumber);
 
         return account;
@@ -61,10 +61,11 @@ namespace
 
 void AccountManager::create(const Account& account)
 {
-    if (isAccountValid(account))
+    Account formattedAccount = getFormattedInfo(account);
+    if (isAccountValid(formattedAccount))
     {
         m_eligible = true;
-        m_account = getFormattedInfo(account);
+        m_account = formattedAccount;
     }
 }
 
