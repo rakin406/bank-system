@@ -1,6 +1,8 @@
 #ifndef ACCOUNT_MANAGER_H
 #define ACCOUNT_MANAGER_H
 
+#include "utils.h"
+
 #include <string_view>
 
 // TODO: Implement SQL for account saving
@@ -17,6 +19,46 @@ struct Account
                (phoneNumber == acc.phoneNumber);
     }
 };
+
+namespace utils::account
+{
+    /**
+     * @brief Return true if client age is valid.
+     *
+     * @param age Client age.
+     *
+     * @return boolean.
+     */
+    bool isAgeValid(unsigned int age);
+
+    /**
+     * @brief Return true if phone number is valid.
+     *
+     * @param phoneNumber Phone number of client.
+     *
+     * @return boolean.
+     */
+    bool isPhoneNumberValid(std::string_view phoneNumber);
+
+    /**
+     * @brief Return true if all account informations are valid.
+     *
+     * @param account Client account.
+     *
+     * @return boolean.
+     */
+    bool isAccountValid(const Account& account);
+
+    /**
+     * @brief Format and clean the account informations.
+     *
+     * @param Client account.
+     *
+     * @return account Account struct.
+     */
+    Account getFormattedInfo(Account account);
+
+} // namespace utils::account
 
 /**
  * @brief This class contains methods for managing and creating accounts.

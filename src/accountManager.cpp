@@ -3,49 +3,23 @@
 
 #include <string_view>
 
-namespace
-{
-    constexpr unsigned int MINIMUM_AGE = 18;
+static constexpr unsigned int MINIMUM_AGE = 18;
 
-    /**
-     * @brief Return true if client age is valid.
-     *
-     * @param age Client age.
-     *
-     * @return boolean.
-     */
+namespace utils::account
+{
     bool isAgeValid(unsigned int age) { return age >= MINIMUM_AGE; }
 
     // TODO: Implement this
-    /**
-     * @brief Return true if phone number is valid.
-     *
-     * @param phoneNumber Phone number of client.
-     *
-     * @return boolean.
-     */
     bool isPhoneNumberValid(std::string_view phoneNumber) { return true; }
 
-    /**
-     * @brief Return true if all account informations are valid.
-     *
-     * @param account Client account.
-     *
-     * @return boolean.
-     */
+    // TODO: Test this
     bool isAccountValid(const Account& account)
     {
         return isAgeValid(account.age) &&
                isPhoneNumberValid(account.phoneNumber);
     }
 
-    /**
-     * @brief Format and clean the account informations.
-     *
-     * @param Client account.
-     *
-     * @return account Account struct.
-     */
+    // TODO: Test this
     Account getFormattedInfo(Account account)
     {
         using utils::trim;
@@ -56,11 +30,11 @@ namespace
 
         return account;
     }
-
-} // namespace
+} // namespace utils::account
 
 bool AccountManager::create(const Account& account)
 {
+    using namespace utils::account;
     Account formattedAccount = getFormattedInfo(account);
     if (isAccountValid(formattedAccount))
     {
