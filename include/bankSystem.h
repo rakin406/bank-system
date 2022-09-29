@@ -26,14 +26,6 @@ private:
     // int m_withdrawal;
     // int m_savings;
     std::string_view m_country{}; // Local country
-
-    // TODO: Implement this
-    /**
-     * @brief Get local country using HTTP request.
-     *
-     * @return country as string.
-     */
-    std::string_view getLocalCountry();
 };
 
 #endif

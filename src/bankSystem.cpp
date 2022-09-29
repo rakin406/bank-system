@@ -1,5 +1,4 @@
 #include "../include/bankSystem.h"
+#include "../include/utils.h"
 
-BankSystem::BankSystem() { m_country = getLocalCountry(); }
-
-std::string_view BankSystem::getLocalCountry() { return ""; }
+BankSystem::BankSystem() { m_country = utils::net::getLocalCountry(); }

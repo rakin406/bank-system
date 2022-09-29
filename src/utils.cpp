@@ -24,3 +24,6 @@ namespace utils
 
     std::string_view trim(std::string_view str) { return rtrim(ltrim(str)); }
 } // namespace utils
+
+// TODO: Implement this
+std::string_view utils::net::getLocalCountry() { return ""; }
