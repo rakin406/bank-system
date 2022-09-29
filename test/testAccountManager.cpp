@@ -6,7 +6,7 @@
 
 TEST_CASE("utils::account::isAgeValid() returns correct boolean"
           "(pass)",
-          "[multi-file:3]")
+          "[multi-file:2]")
 {
     REQUIRE(utils::account::isAgeValid(15) == false);
     REQUIRE(utils::account::isAgeValid(18) == true);
@@ -16,7 +16,7 @@ TEST_CASE("utils::account::isAgeValid() returns correct boolean"
 // TODO: Test isPhoneNumberValid()
 // TEST_CASE("utils::account::isPhoneNumberValid() returns correct boolean"
 //           "(pass)",
-//           "[multi-file:3]")
+//           "[multi-file:2]")
 // {
 //     REQUIRE(utils::account::isAgeValid(15) == false);
 //     REQUIRE(utils::account::isAgeValid(18) == true);
@@ -27,7 +27,7 @@ TEST_CASE("utils::account::isAgeValid() returns correct boolean"
 
 TEST_CASE("Account struct \"==\" comparison returns true"
           "(pass)",
-          "[multi-file:3]")
+          "[multi-file:2]")
 {
     Account account{ "Darth Vader", 18, "" };
     Account duplicate{ account };
@@ -36,7 +36,7 @@ TEST_CASE("Account struct \"==\" comparison returns true"
 
 TEST_CASE("AccountManager::create() creates account successfully"
           "(pass)",
-          "[multi-file:3]")
+          "[multi-file:2]")
 {
     AccountManager manager;
     Account account{ "Darth Vader", 18, "" };
@@ -45,7 +45,7 @@ TEST_CASE("AccountManager::create() creates account successfully"
 
 TEST_CASE("AccountManager::isEligible() returns false on initialization"
           "(pass)",
-          "[multi-file:3]")
+          "[multi-file:2]")
 {
     AccountManager manager;
     REQUIRE(manager.isEligible() == false);
