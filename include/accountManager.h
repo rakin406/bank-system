@@ -1,7 +1,6 @@
 #ifndef ACCOUNT_MANAGER_H
 #define ACCOUNT_MANAGER_H
 
-#include "bankSystem.h"
 #include "utils.h"
 
 #include <string_view>
@@ -64,9 +63,14 @@ namespace utils::account
 /**
  * @brief This class contains methods for managing and creating accounts.
  */
-class AccountManager : public BankSystem
+class AccountManager
 {
 public:
+    /**
+     * @brief Default constructor for Bank System initialization.
+     */
+    AccountManager();
+
     /**
      * @brief Create bank account with necessary information.
      *
@@ -87,6 +91,10 @@ private:
     // std::string_view password;  // TODO: Future idea
     Account m_account; // Client account
     bool m_eligible{}; // Boolean for bank allowance
+    // int m_deposit;
+    // int m_withdrawal;
+    // int m_savings;
+    std::string_view m_country{}; // Local country
 };
 
 #endif

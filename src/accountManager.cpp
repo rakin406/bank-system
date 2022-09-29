@@ -32,6 +32,8 @@ namespace utils::account
     }
 } // namespace utils::account
 
+AccountManager::AccountManager() { m_country = utils::net::getLocalCountry(); }
+
 bool AccountManager::create(const Account& account)
 {
     using namespace utils::account;
