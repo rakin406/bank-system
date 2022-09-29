@@ -42,3 +42,20 @@ TEST_CASE("Account::isAgeValid() returns correct boolean"
     account.age = 30;
     REQUIRE(account.isAgeValid() == true);
 }
+
+TEST_CASE("Account::isValid() returns correct boolean"
+          "(pass)",
+          "[multi-file:2]")
+{
+    Account account{ "batman", 30 };
+    REQUIRE(account.isValid() == true);
+
+    account = { "", 0 };
+    REQUIRE(account.isValid() == false);
+
+    account = { "batman", 0 };
+    REQUIRE(account.isValid() == false);
+
+    account = { "", 30 };
+    REQUIRE(account.isValid() == false);
+}
