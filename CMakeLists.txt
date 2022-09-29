@@ -27,8 +27,7 @@ CPMAddPackage("gh:catchorg/Catch2@3.1.0")
 
 # Public libraries needed for both main executable and tests
 add_library(lib
-    src/utils/utils.cpp
-    src/utils/account.cpp
+    src/utils.cpp
     src/accountManager.cpp)
 
 # Make executable link against library
@@ -38,8 +37,7 @@ target_link_libraries(${PROJECT_NAME} PUBLIC lib)
 
 # Same here for tests
 add_executable(tests
-    test/utils/testUtils.cpp
-    test/utils/testAccount.cpp
+    test/testUtils.cpp
     test/testAccountManager.cpp
     test/testBankSystem.cpp)
 target_link_libraries(tests PUBLIC lib)
