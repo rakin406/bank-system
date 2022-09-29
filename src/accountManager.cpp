@@ -12,6 +12,9 @@ void AccountManager::createAccount(const Account& account)
 
 bool AccountManager::isEligible() const { return m_eligible; }
 
+// TODO: Test this function
+Account AccountManager::getAccount() const { return m_account; }
+
 // bool AccountManager::isBirthDateValid() {}
 
 // bool AccountManager::isPhoneNumberValid() {}

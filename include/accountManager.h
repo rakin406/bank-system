@@ -10,6 +10,19 @@ struct Account
     std::string_view name{};        // Name of client
     std::string_view birthDate{};   // Birth date of client
     std::string_view phoneNumber{}; // Phone number of client
+
+    /**
+     * @brief Check for struct equality.
+     *
+     * @param acc Account struct.
+     *
+     * @return boolean.
+     */
+    bool operator==(const Account& acc) const
+    {
+        return (name == acc.name) && (birthDate == acc.birthDate) &&
+               (phoneNumber == acc.phoneNumber);
+    }
 };
 
 /**
@@ -31,6 +44,13 @@ public:
      * @return boolean.
      */
     [[nodiscard]] bool isEligible() const;
+
+    /**
+     * @brief Get client account.
+     *
+     * @return Account struct.
+     */
+    [[nodiscard]] Account getAccount() const;
 
 private:
     // std::string_view password;  // TODO: Future idea

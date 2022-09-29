@@ -5,7 +5,6 @@ namespace utils::account
 {
     // unsigned int getAgeFromBirthDate();
 
-    // TODO: Test this function
     Account formatAccountInfo(const Account& account)
     {
         using utils::trim;
