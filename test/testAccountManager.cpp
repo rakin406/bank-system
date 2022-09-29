@@ -10,7 +10,7 @@ TEST_CASE("AccountManager::isEligible() method returns false on initialization "
     REQUIRE(manager.isEligible() == false);
 }
 
-TEST_CASE("AccountManage::getAccount() method returns account"
+TEST_CASE("AccountManager::getAccount() method returns account"
           "(pass)",
           "[multi-file:3]")
 {
