@@ -10,11 +10,8 @@ namespace
 
 bool Account::isAgeValid() const { return age >= MINIMUM_AGE; }
 
-// TODO: Implement this
-bool Account::isPhoneNumberValid() { return true; }
-
 // TODO: Test this
-bool Account::isValid() { return isAgeValid() && isPhoneNumberValid(); }
+bool Account::isValid() { return isAgeValid(); }
 
 // TODO: Test this
 void Account::format()
@@ -23,5 +20,4 @@ void Account::format()
 
     // Clean up leading and trailing white spaces
     name = trim(name);
-    phoneNumber = trim(phoneNumber);
 }

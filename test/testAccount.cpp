@@ -29,13 +29,3 @@ TEST_CASE("Account::isAgeValid() returns correct boolean"
     account.age = 30;
     REQUIRE(account.isAgeValid() == true);
 }
-
-// TODO: Test isPhoneNumberValid()
-// TEST_CASE("utils::account::isPhoneNumberValid() returns correct boolean"
-//           "(pass)",
-//           "[multi-file:2]")
-// {
-//     REQUIRE(utils::account::isAgeValid(15) == false);
-//     REQUIRE(utils::account::isAgeValid(18) == true);
-//     REQUIRE(utils::account::isAgeValid(30) == true);
-// }

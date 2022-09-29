@@ -5,14 +5,12 @@
 
 struct Account
 {
-    std::string_view name{};        // Client name
-    unsigned int age{};             // Client age
-    std::string_view phoneNumber{}; // Phone number of client
+    std::string_view name{}; // Client name
+    unsigned int age{};      // Client age
 
     bool operator==(const Account& acc) const
     {
-        return (name == acc.name) && (age == acc.age) &&
-               (phoneNumber == acc.phoneNumber);
+        return (name == acc.name) && (age == acc.age);
     }
 
     /**
@@ -21,13 +19,6 @@ struct Account
      * @return boolean.
      */
     [[nodiscard]] bool isAgeValid() const;
-
-    /**
-     * @brief Return true if phone number is valid.
-     *
-     * @return boolean.
-     */
-    bool isPhoneNumberValid();
 
     /**
      * @brief Return true if all account informations are valid.
