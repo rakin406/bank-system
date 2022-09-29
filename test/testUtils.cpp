@@ -1,4 +1,4 @@
-#include "../../include/utils/utils.h"
+#include "../include/utils.h"
 
 #include <catch2/catch_test_macros.hpp>
 

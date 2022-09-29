@@ -1,5 +1,5 @@
 #include "../include/accountManager.h"
-#include "../include/utils/utils.h"
+#include "../include/utils.h"
 
 void AccountManager::createAccount(const Account& account)
 {
@@ -17,8 +17,6 @@ void AccountManager::formatAccountInfo(const Account& account)
 }
 
 bool AccountManager::isEligible() const { return m_eligible; }
-
-Account AccountManager::getAccount() const { return m_account; }
 
 // bool AccountManager::isBirthDateValid() {}
 

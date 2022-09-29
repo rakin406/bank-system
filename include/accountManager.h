@@ -45,13 +45,6 @@ public:
      */
     [[nodiscard]] bool isEligible() const;
 
-    /**
-     * @brief Get client account.
-     *
-     * @return Account struct.
-     */
-    [[nodiscard]] Account getAccount() const;
-
 private:
     // std::string_view password;  // TODO: Future idea
     Account m_account; // Client account
