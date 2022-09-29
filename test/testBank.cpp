@@ -7,7 +7,7 @@ TEST_CASE("Bank::create() creates account successfully"
           "[multi-file:2]")
 {
     Bank bank;
-    Account account{ "Darth Vader", 18, "" };
+    Account account{ "Darth Vader", 18 };
     REQUIRE(bank.createAccount(account) == true);
 }
 

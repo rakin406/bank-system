@@ -14,6 +14,13 @@ struct Account
     }
 
     /**
+     * @brief Return true if client name is valid.
+     *
+     * @return boolean.
+     */
+    [[nodiscard]] bool isNameValid() const;
+
+    /**
      * @brief Return true if client age is valid.
      *
      * @return boolean.

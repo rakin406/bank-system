@@ -8,16 +8,13 @@ namespace
     constexpr unsigned int MINIMUM_AGE = 18;
 }
 
+// TODO: Test this
+bool Account::isNameValid() const { return !name.empty(); }
+
 bool Account::isAgeValid() const { return age >= MINIMUM_AGE; }
 
 // TODO: Test this
-bool Account::isValid() { return isAgeValid(); }
+bool Account::isValid() { return isNameValid() && isAgeValid(); }
 
 // TODO: Test this
-void Account::format()
-{
-    using utils::trim;
-
-    // Clean up leading and trailing white spaces
-    name = trim(name);
-}
+void Account::format() { name = utils::trim(name); }
