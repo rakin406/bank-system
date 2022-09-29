@@ -2,12 +2,12 @@
 #include "../include/account.h"
 #include "../include/utils.h"
 
-bool Bank::createAccount(Account& account)
+bool Bank::createAccount(Account* account)
 {
     // Remove leading and trailing white spaces in account information
-    account.format();
+    account->format();
 
-    if (account.isValid())
+    if (account->isValid())
     {
         m_eligible = true;
         m_account = account;
@@ -16,4 +16,32 @@ bool Bank::createAccount(Account& account)
     return false;
 }
 
+bool Bank::accountExists() { return m_account != nullptr; }
+
 bool Bank::isEligible() const { return m_eligible; }
+
+bool Bank::deposit(int amount)
+{
+    if (accountExists() && m_account->wallet - amount > 0)
+    {
+        // Transfer money from wallet to savings
+        m_account->wallet -= amount;
+        m_savings += amount;
+        return true; // Successful deposit
+    }
+    return false;
+}
+
+bool Bank::withdraw(int amount)
+{
+    if (accountExists() && m_savings - amount > 0)
+    {
+        // Transfer money from savings to wallet
+        m_savings -= amount;
+        m_account->wallet += amount;
+        return true; // Successful withdraw
+    }
+    return false;
+}
+
+int Bank::getSavings() const { return m_savings; }

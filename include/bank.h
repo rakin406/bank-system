@@ -20,7 +20,14 @@ public:
      *
      * @return true if account is created.
      */
-    bool createAccount(Account& account);
+    bool createAccount(Account* account);
+
+    /**
+     * @brief Ensure account is not null and does exist.
+     *
+     * @return boolean.
+     */
+    bool accountExists();
 
     /**
      * @brief Return true if account is eligible for bank.
@@ -29,13 +36,36 @@ public:
      */
     [[nodiscard]] bool isEligible() const;
 
+    /**
+     * @brief Deposit money to bank.
+     *
+     * @param amount Amount of money.
+     *
+     * @return true if deposit is successful.
+     */
+    bool deposit(int amount);
+
+    /**
+     * @brief Withdraw money from bank.
+     *
+     * @param amount Amount of money.
+     *
+     * @return true if withdrawal is successful.
+     */
+    bool withdraw(int amount);
+
+    /**
+     * @brief Get the amount of savings for client.
+     *
+     * @return integer of savings.
+     */
+    [[nodiscard]] int getSavings() const;
+
 private:
     // std::string_view password;
-    Account m_account; // Client account
-    bool m_eligible{}; // Boolean for bank allowance
-    // int m_deposit;
-    // int m_withdrawal;
-    // int m_savings;
+    Account* m_account{ nullptr }; // Client account
+    bool m_eligible{ false };      // Boolean for bank allowance
+    int m_savings{ 0 };            // Money savings in bank
 };
 
 #endif
