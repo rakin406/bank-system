@@ -1,4 +1,4 @@
-#include "../include/accountManager.h"
+#include "../include/bank.h"
 #include "../include/utils.h"
 
 #include <string_view>
@@ -32,9 +32,9 @@ namespace utils::account
     }
 } // namespace utils::account
 
-AccountManager::AccountManager() { m_country = utils::net::getLocalCountry(); }
+Bank::Bank() { m_country = utils::net::getLocalCountry(); }
 
-bool AccountManager::create(const Account& account)
+bool Bank::createAccount(const Account& account)
 {
     using namespace utils::account;
     Account formattedAccount = getFormattedInfo(account);
@@ -47,4 +47,4 @@ bool AccountManager::create(const Account& account)
     return false;
 }
 
-bool AccountManager::isEligible() const { return m_eligible; }
+bool Bank::isEligible() const { return m_eligible; }

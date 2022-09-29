@@ -1,5 +1,5 @@
-#ifndef ACCOUNT_MANAGER_H
-#define ACCOUNT_MANAGER_H
+#ifndef BANK_H
+#define BANK_H
 
 #include "utils.h"
 
@@ -61,15 +61,15 @@ namespace utils::account
 } // namespace utils::account
 
 /**
- * @brief This class contains methods for managing and creating accounts.
+ * @brief This class is for account management and money transactions.
  */
-class AccountManager
+class Bank
 {
 public:
     /**
-     * @brief Default constructor for Bank System initialization.
+     * @brief Default constructor for Bank initialization.
      */
-    AccountManager();
+    Bank();
 
     /**
      * @brief Create bank account with necessary information.
@@ -78,7 +78,7 @@ public:
      *
      * @return true if account is created.
      */
-    bool create(const Account& account);
+    bool createAccount(const Account& account);
 
     /**
      * @brief Return true if account is eligible for bank.
