@@ -28,8 +28,10 @@ public:
      * @brief Create bank account with necessary information.
      *
      * @param account Account structure containing information about the client.
+     *
+     * @return true if account is created.
      */
-    void create(const Account& account);
+    bool create(const Account& account);
 
     /**
      * @brief Return true if account is eligible for bank.

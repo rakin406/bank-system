@@ -24,7 +24,7 @@ namespace
      *
      * @return boolean.
      */
-    bool isPhoneNumberValid(std::string_view phoneNumber) {}
+    bool isPhoneNumberValid(std::string_view phoneNumber) { return true; }
 
     /**
      * @brief Return true if all account informations are valid.
@@ -59,14 +59,16 @@ namespace
 
 } // namespace
 
-void AccountManager::create(const Account& account)
+bool AccountManager::create(const Account& account)
 {
     Account formattedAccount = getFormattedInfo(account);
     if (isAccountValid(formattedAccount))
     {
         m_eligible = true;
         m_account = formattedAccount;
+        return true; // Account is successfuly registered
     }
+    return false;
 }
 
 bool AccountManager::isEligible() const { return m_eligible; }
