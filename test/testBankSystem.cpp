@@ -1,4 +1,4 @@
-// #include "../include/bankSystem.h"
+#include "../include/bankSystem.h"
 
 #include <catch2/catch_test_macros.hpp>
 

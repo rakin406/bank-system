@@ -1,6 +1,7 @@
 #ifndef ACCOUNT_MANAGER_H
 #define ACCOUNT_MANAGER_H
 
+#include "bankSystem.h"
 #include "utils.h"
 
 #include <string_view>
@@ -63,7 +64,7 @@ namespace utils::account
 /**
  * @brief This class contains methods for managing and creating accounts.
  */
-class AccountManager
+class AccountManager : public BankSystem
 {
 public:
     /**
