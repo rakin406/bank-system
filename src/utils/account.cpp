@@ -6,14 +6,18 @@ namespace utils::account
     // unsigned int getAgeFromBirthDate();
 
     // TODO: Test this function
-    void formatAccountInfo(Account& account)
+    Account formatAccountInfo(const Account& account)
     {
         using utils::trim;
 
+        Account newAccount{};
+
         // Clean up leading and trailing white spaces
-        account.name = trim(account.name);
-        account.birthDate = trim(account.birthDate);
-        account.phoneNumber = trim(account.phoneNumber);
+        newAccount.name = trim(account.name);
+        newAccount.birthDate = trim(account.birthDate);
+        newAccount.phoneNumber = trim(account.phoneNumber);
+
+        return newAccount;
     }
 
 } // namespace utils::account

@@ -7,8 +7,7 @@
 // TODO: Test this function
 void AccountManager::createAccount(const Account& account)
 {
-    m_account = account;
-    utils::account::formatAccountInfo(m_account);
+    m_account = utils::account::formatAccountInfo(account);
 }
 
 bool AccountManager::isEligible() const { return m_eligible; }

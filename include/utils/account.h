@@ -13,7 +13,7 @@ namespace utils::account
      *
      * @param account.
      */
-    void formatAccountInfo(Account& account);
+    Account formatAccountInfo(const Account& account);
 
 } // namespace utils::account
 
