@@ -1,64 +1,11 @@
 #ifndef BANK_H
 #define BANK_H
 
-#include "utils.h"
+#include "account.h"
 
 #include <string_view>
 
 // TODO: Implement SQL for account saving
-
-struct Account
-{
-    std::string_view name{};        // Client name
-    unsigned int age{};             // Client age
-    std::string_view phoneNumber{}; // Phone number of client
-
-    bool operator==(const Account& acc) const
-    {
-        return (name == acc.name) && (age == acc.age) &&
-               (phoneNumber == acc.phoneNumber);
-    }
-};
-
-namespace utils::account
-{
-    /**
-     * @brief Return true if client age is valid.
-     *
-     * @param age Client age.
-     *
-     * @return boolean.
-     */
-    bool isAgeValid(unsigned int age);
-
-    /**
-     * @brief Return true if phone number is valid.
-     *
-     * @param phoneNumber Phone number of client.
-     *
-     * @return boolean.
-     */
-    bool isPhoneNumberValid(std::string_view phoneNumber);
-
-    /**
-     * @brief Return true if all account informations are valid.
-     *
-     * @param account Client account.
-     *
-     * @return boolean.
-     */
-    bool isAccountValid(const Account& account);
-
-    /**
-     * @brief Format and clean the account informations.
-     *
-     * @param Client account.
-     *
-     * @return account Account struct.
-     */
-    Account getFormattedInfo(Account account);
-
-} // namespace utils::account
 
 /**
  * @brief This class is for account management and money transactions.
@@ -78,7 +25,7 @@ public:
      *
      * @return true if account is created.
      */
-    bool createAccount(const Account& account);
+    bool createAccount(Account& account);
 
     /**
      * @brief Return true if account is eligible for bank.
