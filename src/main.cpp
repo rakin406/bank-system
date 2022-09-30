@@ -1,6 +1,8 @@
 #include "../include/bank.h"
 #include "../include/account.h"
 
+#include <iostream>
+
 int main()
 {
     Bank bank;

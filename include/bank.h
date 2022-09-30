@@ -17,10 +17,11 @@ public:
      * @brief Create bank account with necessary information.
      *
      * @param account Account structure containing information about the client.
+     * @param initialDeposit Necessary initial deposit from client.
      *
      * @return true if account is created.
      */
-    bool createAccount(Account* account);
+    bool createAccount(Account* account, int initialDeposit);
 
     /**
      * @brief Ensure account is not null and does exist.

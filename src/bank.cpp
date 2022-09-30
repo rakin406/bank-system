@@ -2,7 +2,7 @@
 #include "../include/account.h"
 #include "../include/utils.h"
 
-bool Bank::createAccount(Account* account)
+bool Bank::createAccount(Account* account, int initialDeposit)
 {
     // Remove leading and trailing white spaces in account information
     account->format();
@@ -11,6 +11,7 @@ bool Bank::createAccount(Account* account)
     {
         m_eligible = true;
         m_account = account;
+        deposit(initialDeposit);
         return true; // Account is successfuly registered
     }
     return false;

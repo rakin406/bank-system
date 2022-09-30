@@ -3,7 +3,9 @@
 
 #include <string_view>
 
-// Client account
+/**
+ * @brief Client account.
+ */
 struct Account
 {
     std::string_view name{}; // Client name
