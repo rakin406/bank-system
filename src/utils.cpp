@@ -1,7 +1,9 @@
 #include "../include/utils.h"
 
-#include <string_view>
 #include <algorithm>
+#include <cctype>
+#include <string>
+#include <string_view>
 
 namespace
 {
@@ -23,4 +25,10 @@ namespace utils
     }
 
     std::string_view trim(std::string_view str) { return rtrim(ltrim(str)); }
+
+    void stringToLowerCase(std::string* str)
+    {
+        std::transform(str->begin(), str->end(), str->begin(),
+                       [](unsigned char c) { return std::tolower(c); });
+    }
 } // namespace utils

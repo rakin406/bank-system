@@ -1,8 +1,7 @@
 #include "../include/bank.h"
 #include "../include/client.h"
+#include "../include/utils.h"
 
-#include <algorithm>
-#include <cctype>
 #include <iostream>
 #include <string>
 #include <string_view>
@@ -15,6 +14,11 @@ namespace setup
      * @param client Client.
      */
     void getCorrectInput(Client* client);
+
+    /**
+     * @brief Print commands.
+     */
+    void printCommands();
 } // namespace setup
 
 int main()
@@ -57,14 +61,7 @@ int main()
         std::cout << "Could not register client to bank\n";
     }
 
-    std::cout << "Commands:\n";
-    std::cout << "c        = Get wallet cash\n";
-    std::cout << "s        = Get current savings\n";
-    std::cout << "d <cash> = Deposit <cash> to bank\n";
-    std::cout << "w <cash> = Withdraw <cash> from bank\n";
-    std::cout << "da       = Deposit all cash to bank\n";
-    std::cout << "wa       = Withdraw all cash from bank\n";
-    std::cout << "q        = Quit program\n";
+    setup::printCommands();
 
     bool prompt{ true };
     std::string command{};
@@ -77,8 +74,7 @@ int main()
         std::cin >> command;
 
         // Command input to lowercase
-        std::transform(command.begin(), command.end(), command.begin(),
-                       [](unsigned char c) { return std::tolower(c); });
+        utils::stringToLowerCase(&command);
 
         if (command == "c")
         {
@@ -165,4 +161,15 @@ void setup::getCorrectInput(Client* client)
         // Reset value
         client->wallet = wallet;
     }
+}
+void setup::printCommands()
+{
+    std::cout << "Commands:\n";
+    std::cout << "c        = Get wallet cash\n";
+    std::cout << "s        = Get current savings\n";
+    std::cout << "d <cash> = Deposit <cash> to bank\n";
+    std::cout << "w <cash> = Withdraw <cash> from bank\n";
+    std::cout << "da       = Deposit all cash to bank\n";
+    std::cout << "wa       = Withdraw all cash from bank\n";
+    std::cout << "q        = Quit program\n";
 }
