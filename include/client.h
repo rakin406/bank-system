@@ -1,10 +1,7 @@
-#ifndef ACCOUNT_H
-#define ACCOUNT_H
+#ifndef CLIENT_H
+#define CLIENT_H
 
-/**
- * @brief Client account.
- */
-struct Account
+struct Client
 {
     int wallet{}; // Money in client's wallet
 

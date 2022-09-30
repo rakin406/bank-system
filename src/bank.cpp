@@ -1,26 +1,26 @@
 #include "../include/bank.h"
-#include "../include/account.h"
+#include "../include/client.h"
 #include "../include/utils.h"
 
-bool Bank::createAccount(Account* account, int initialDeposit)
+bool Bank::registerClient(Client* client, int initialDeposit)
 {
-    if (account->isWalletValid() && initialDeposit > 0)
+    if (client->isWalletValid() && initialDeposit > 0)
     {
-        m_account = account;
+        m_client = client;
         deposit(initialDeposit);
-        return true; // Account is successfuly registered
+        return true; // Client is successfuly registered
     }
     return false;
 }
 
-bool Bank::accountExists() { return m_account != nullptr; }
+bool Bank::clientExists() { return m_client != nullptr; }
 
 bool Bank::deposit(int amount)
 {
-    if ((amount > 0) && (accountExists()) && (m_account->wallet - amount > 0))
+    if ((amount > 0) && (clientExists()) && (m_client->wallet - amount > 0))
     {
         // Transfer cash from wallet to savings
-        m_account->wallet -= amount;
+        m_client->wallet -= amount;
         m_savings += amount;
         return true; // Successful deposit
     }
@@ -30,11 +30,11 @@ bool Bank::deposit(int amount)
 // TODO: Test this
 bool Bank::withdraw(int amount)
 {
-    if ((amount > 0) && (accountExists()) && (m_savings - amount > 0))
+    if ((amount > 0) && (clientExists()) && (m_savings - amount > 0))
     {
         // Transfer cash from savings to wallet
         m_savings -= amount;
-        m_account->wallet += amount;
+        m_client->wallet += amount;
         return true; // Successful withdraw
     }
     return false;
@@ -42,11 +42,11 @@ bool Bank::withdraw(int amount)
 
 bool Bank::depositAll()
 {
-    if (accountExists())
+    if (clientExists())
     {
         // Transfer all cash from wallet to savings
-        m_savings += m_account->wallet;
-        m_account->wallet = 0;
+        m_savings += m_client->wallet;
+        m_client->wallet = 0;
         return true; // Successful deposit
     }
     return false;
@@ -55,10 +55,10 @@ bool Bank::depositAll()
 // TODO: Test this
 bool Bank::withdrawAll()
 {
-    if (accountExists())
+    if (clientExists())
     {
         // Transfer all cash from savings to wallet
-        m_account->wallet += m_savings;
+        m_client->wallet += m_savings;
         m_savings = 0;
         return true; // Successful withdraw
     }

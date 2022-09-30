@@ -1,5 +1,5 @@
 #include "../include/bank.h"
-#include "../include/account.h"
+#include "../include/client.h"
 
 #include <algorithm>
 #include <cctype>
@@ -10,11 +10,11 @@
 namespace setup
 {
     /**
-     * @brief Get input for account information until it's valid.
+     * @brief Get input for client information until it's valid.
      *
-     * @param account Client account.
+     * @param client Client.
      */
-    void getCorrectInput(Account* account);
+    void getCorrectInput(Client* client);
 } // namespace setup
 
 int main()
@@ -25,15 +25,15 @@ int main()
     std::cout << "Enter wallet cash: ";
     std::cin >> wallet;
 
-    Account account{ wallet };
+    Client client{ wallet };
 
-    if (!account.isWalletValid())
+    if (!client.isWalletValid())
     {
-        setup::getCorrectInput(&account);
+        setup::getCorrectInput(&client);
     }
 
     std::cout << "\n";
-    std::cout << "Account is valid!\n";
+    std::cout << "Client is valid!\n";
 
     Bank bank{};
 
@@ -48,13 +48,13 @@ int main()
         std::cin >> initialDeposit;
     }
 
-    if (bank.createAccount(&account, initialDeposit))
+    if (bank.registerClient(&client, initialDeposit))
     {
-        std::cout << "Bank account created successfully!\n";
+        std::cout << "Client registered to bank successfully!\n";
     }
     else
     {
-        std::cout << "Could not create bank account\n";
+        std::cout << "Could not register client to bank\n";
     }
 
     std::cout << "Commands:\n";
@@ -82,7 +82,7 @@ int main()
 
         if (command == "c")
         {
-            std::cout << "Cash in wallet: " << account.wallet << "\n";
+            std::cout << "Cash in wallet: " << client.wallet << "\n";
         }
         else if (command == "s")
         {
@@ -151,18 +151,18 @@ int main()
     return 0;
 }
 
-void setup::getCorrectInput(Account* account)
+void setup::getCorrectInput(Client* client)
 {
     int wallet{};
 
     // Keep getting input until wallet is valid
-    while (!account->isWalletValid())
+    while (!client->isWalletValid())
     {
         std::cout << "Invalid wallet cash\n";
         std::cout << "Enter wallet cash again: ";
         std::cin >> wallet;
 
         // Reset value
-        account->wallet = wallet;
+        client->wallet = wallet;
     }
 }
