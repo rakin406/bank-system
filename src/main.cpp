@@ -22,6 +22,7 @@ int main()
     std::string name{};
     unsigned int age{};
     int wallet{};
+    int initialDeposit{};
 
     std::cout << "Enter name: ";
     std::getline(std::cin >> std::ws, name);
@@ -29,6 +30,17 @@ int main()
     std::cin >> age;
     std::cout << "Enter wallet cash: ";
     std::cin >> wallet;
+    std::cout << "Enter initial deposit: ";
+    std::cin >> initialDeposit;
+
+    while (initialDeposit > wallet)
+    {
+        std::cout << "\n";
+        std::cout
+            << "Initial deposit cannot be higher than your wallet cash!\n";
+        std::cout << "Enter initial deposit: ";
+        std::cin >> initialDeposit;
+    }
 
     Account account{ static_cast<std::string_view>(name), age, wallet };
 
@@ -37,7 +49,20 @@ int main()
         setup::getCorrectInput(&account);
     }
 
+    std::cout << "\n";
     std::cout << "Account is valid!\n";
+
+    if (bank.createAccount(&account, initialDeposit))
+    {
+        std::cout << "Bank account created successfully!\n";
+    }
+    else
+    {
+        std::cout << "Could not create bank account\n";
+    }
+
+    std::cout << "\n";
+    std::cout << "Your savings: " << bank.getSavings() << "\n";
 
     return 0;
 }
