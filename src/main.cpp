@@ -1,6 +1,7 @@
 #include "../include/bank.h"
 #include "../include/account.h"
 
+#include <algorithm>
 #include <cctype>
 #include <iostream>
 #include <string>
@@ -15,8 +16,6 @@ namespace setup
      */
     void getCorrectInput(Account* account);
 } // namespace setup
-
-// TODO: Create commands for Bank::depositAll() and Bank::withdrawAll()
 
 int main()
 {
@@ -69,10 +68,12 @@ int main()
     std::cout << "s        = Get current savings\n";
     std::cout << "d <cash> = Deposit <cash> to bank\n";
     std::cout << "w <cash> = Withdraw <cash> from bank\n";
+    std::cout << "da       = Deposit all cash to bank\n";
+    std::cout << "wa       = Withdraw all cash from bank\n";
     std::cout << "q        = Quit program\n";
 
     bool prompt{ true };
-    char command{};
+    std::string command{};
     int cash{};
 
     // FIX: Broken input
@@ -81,15 +82,20 @@ int main()
         std::cout << ">> ";
         std::cin >> command;
 
-        switch (std::tolower(command))
+        // Command input to lowercase
+        std::transform(command.begin(), command.end(), command.begin(),
+                       [](unsigned char c) { return std::tolower(c); });
+
+        if (command == "c")
         {
-        case 'c':
             std::cout << "Cash in wallet: " << account.wallet << "\n";
-            break;
-        case 's':
+        }
+        else if (command == "s")
+        {
             std::cout << "Current savings: " << bank.getSavings() << "\n";
-            break;
-        case 'd':
+        }
+        else if (command == "d")
+        {
             std::cout << "Amount: ";
             std::cin >> cash;
 
@@ -101,8 +107,9 @@ int main()
             {
                 std::cout << "Failed to deposit cash\n";
             }
-            break;
-        case 'w':
+        }
+        else if (command == "w")
+        {
             std::cout << "Amount: ";
             std::cin >> cash;
 
@@ -114,13 +121,36 @@ int main()
             {
                 std::cout << "Failed to withdraw cash\n";
             }
-            break;
-        case 'q':
+        }
+        else if (command == "da")
+        {
+            if (bank.depositAll())
+            {
+                std::cout << "Deposited all cash to bank\n";
+            }
+            else
+            {
+                std::cout << "Failed to deposit cash\n";
+            }
+        }
+        else if (command == "wa")
+        {
+            if (bank.withdrawAll())
+            {
+                std::cout << "Withdrawn all cash from bank\n";
+            }
+            else
+            {
+                std::cout << "Failed to withdraw cash\n";
+            }
+        }
+        else if (command == "q")
+        {
             prompt = false;
-            break;
-        default:
+        }
+        else
+        {
             std::cout << "Please provide a proper command\n";
-            break;
         }
     }
 
