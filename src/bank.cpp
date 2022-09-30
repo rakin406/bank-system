@@ -4,10 +4,7 @@
 
 bool Bank::createAccount(Account* account, int initialDeposit)
 {
-    // Remove leading and trailing white spaces in account information
-    account->format();
-
-    if (account->isValid() && initialDeposit > 0)
+    if (account->isWalletValid() && initialDeposit > 0)
     {
         m_account = account;
         deposit(initialDeposit);

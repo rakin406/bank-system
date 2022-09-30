@@ -19,21 +19,15 @@ namespace setup
 
 int main()
 {
-    std::string name{};
-    int age{};
     int wallet{};
     int initialDeposit{};
 
-    std::cout << "Enter name: ";
-    std::getline(std::cin >> std::ws, name);
-    std::cout << "Enter age: ";
-    std::cin >> age;
     std::cout << "Enter wallet cash: ";
     std::cin >> wallet;
 
-    Account account{ static_cast<std::string_view>(name), age, wallet };
+    Account account{ wallet };
 
-    if (!account.isValid())
+    if (!account.isWalletValid())
     {
         setup::getCorrectInput(&account);
     }
@@ -159,35 +153,16 @@ int main()
 
 void setup::getCorrectInput(Account* account)
 {
-    std::string name{};
-    int age{};
     int wallet{};
 
-    // Keep getting input until account is valid
-    while (!account->isValid())
+    // Keep getting input until wallet is valid
+    while (!account->isWalletValid())
     {
-        if (!account->isNameValid())
-        {
-            std::cout << "Invalid name\n";
-            std::cout << "Enter name again: ";
-            std::getline(std::cin >> std::ws, name);
-        }
-        else if (!account->isAgeValid())
-        {
-            std::cout << "Underage\n";
-            std::cout << "Enter age again: ";
-            std::cin >> age;
-        }
-        else if (!account->isWalletValid())
-        {
-            std::cout << "Invalid wallet cash\n";
-            std::cout << "Enter wallet cash again: ";
-            std::cin >> wallet;
-        }
+        std::cout << "Invalid wallet cash\n";
+        std::cout << "Enter wallet cash again: ";
+        std::cin >> wallet;
 
-        // Reset values
-        account->name = name;
-        account->age = age;
+        // Reset value
         account->wallet = wallet;
     }
 }
