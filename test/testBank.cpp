@@ -29,6 +29,16 @@ TEST_CASE("Bank::deposit() returns true on successful deposit"
     REQUIRE(bank.deposit(2000) == true);
 }
 
+TEST_CASE("Bank::depositAll() returns true on successful deposit"
+          "(pass)",
+          "[multi-file:2]")
+{
+    Bank bank;
+    Account account{ "batman", 20, 3000 };
+    bank.createAccount(&account, 100);
+    REQUIRE(bank.depositAll() == true);
+}
+
 TEST_CASE("Bank::getSavings() returns 0 on initialization"
           "(pass)",
           "[multi-file:2]")

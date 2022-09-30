@@ -16,6 +16,8 @@ namespace setup
     void getCorrectInput(Account* account);
 } // namespace setup
 
+// TODO: Create commands for Bank::depositAll() and Bank::withdrawAll()
+
 int main()
 {
     std::string name{};

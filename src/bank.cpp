@@ -22,7 +22,7 @@ bool Bank::deposit(int amount)
 {
     if ((amount > 0) && (accountExists()) && (m_account->wallet - amount > 0))
     {
-        // Transfer money from wallet to savings
+        // Transfer cash from wallet to savings
         m_account->wallet -= amount;
         m_savings += amount;
         return true; // Successful deposit
@@ -30,13 +30,39 @@ bool Bank::deposit(int amount)
     return false;
 }
 
+// TODO: Test this
 bool Bank::withdraw(int amount)
 {
     if ((amount > 0) && (accountExists()) && (m_savings - amount > 0))
     {
-        // Transfer money from savings to wallet
+        // Transfer cash from savings to wallet
         m_savings -= amount;
         m_account->wallet += amount;
+        return true; // Successful withdraw
+    }
+    return false;
+}
+
+bool Bank::depositAll()
+{
+    if (accountExists())
+    {
+        // Transfer all cash from wallet to savings
+        m_savings += m_account->wallet;
+        m_account->wallet = 0;
+        return true; // Successful deposit
+    }
+    return false;
+}
+
+// TODO: Test this
+bool Bank::withdrawAll()
+{
+    if (accountExists())
+    {
+        // Transfer all cash from savings to wallet
+        m_account->wallet += m_savings;
+        m_savings = 0;
         return true; // Successful withdraw
     }
     return false;

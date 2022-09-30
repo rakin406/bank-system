@@ -31,22 +31,36 @@ public:
     bool accountExists();
 
     /**
-     * @brief Deposit money to bank.
+     * @brief Deposit cash to bank.
      *
-     * @param amount Amount of money.
+     * @param amount Amount of cash.
      *
      * @return true if deposit is successful.
      */
     bool deposit(int amount);
 
     /**
-     * @brief Withdraw money from bank.
+     * @brief Withdraw cash from bank.
      *
-     * @param amount Amount of money.
+     * @param amount Amount of cash.
      *
      * @return true if withdrawal is successful.
      */
     bool withdraw(int amount);
+
+    /**
+     * @brief Deposit all wallet cash to bank.
+     *
+     * @return true if deposit is successful.
+     */
+    bool depositAll();
+
+    /**
+     * @brief Withdraw all cash from bank.
+     *
+     * @return true if withdrawal is successful.
+     */
+    bool withdrawAll();
 
     /**
      * @brief Get the amount of savings for client.
