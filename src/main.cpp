@@ -19,6 +19,20 @@ namespace setup
      * @brief Print commands.
      */
     void printCommands();
+
+    /**
+     * @brief Print wallet cash.
+     *
+     * @param client Client.
+     */
+    void printWallet(const Client& client);
+
+    // Bank input/output
+    void printSavings(const Bank& bank);
+    void deposit(Bank* bank);
+    void withdraw(Bank* bank);
+    void depositAll(Bank* bank);
+    void withdrawAll(Bank* bank);
 } // namespace setup
 
 int main()
@@ -65,7 +79,6 @@ int main()
 
     bool prompt{ true };
     std::string command{};
-    int cash{};
 
     // FIX: Broken input
     while (prompt)
@@ -78,61 +91,27 @@ int main()
 
         if (command == "c")
         {
-            std::cout << "Cash in wallet: " << client.wallet << "\n";
+            setup::printWallet(client);
         }
         else if (command == "s")
         {
-            std::cout << "Current savings: " << bank.getSavings() << "\n";
+            setup::printSavings(bank);
         }
         else if (command == "d")
         {
-            std::cout << "Amount: ";
-            std::cin >> cash;
-
-            if (bank.deposit(cash))
-            {
-                std::cout << "Deposited " << cash << " to bank\n";
-            }
-            else
-            {
-                std::cout << "Failed to deposit cash\n";
-            }
+            setup::deposit(&bank);
         }
         else if (command == "w")
         {
-            std::cout << "Amount: ";
-            std::cin >> cash;
-
-            if (bank.withdraw(cash))
-            {
-                std::cout << "Withdrawn " << cash << " from bank\n";
-            }
-            else
-            {
-                std::cout << "Failed to withdraw cash\n";
-            }
+            setup::withdraw(&bank);
         }
         else if (command == "da")
         {
-            if (bank.depositAll())
-            {
-                std::cout << "Deposited all cash to bank\n";
-            }
-            else
-            {
-                std::cout << "Failed to deposit cash\n";
-            }
+            setup::depositAll(&bank);
         }
         else if (command == "wa")
         {
-            if (bank.withdrawAll())
-            {
-                std::cout << "Withdrawn all cash from bank\n";
-            }
-            else
-            {
-                std::cout << "Failed to withdraw cash\n";
-            }
+            setup::withdrawAll(&bank);
         }
         else if (command == "q")
         {
@@ -147,29 +126,99 @@ int main()
     return 0;
 }
 
-void setup::getCorrectInput(Client* client)
+namespace setup
 {
-    int wallet{};
-
-    // Keep getting input until wallet is valid
-    while (!client->isWalletValid())
+    void getCorrectInput(Client* client)
     {
-        std::cout << "Invalid wallet cash\n";
-        std::cout << "Enter wallet cash again: ";
-        std::cin >> wallet;
+        int wallet{};
 
-        // Reset value
-        client->wallet = wallet;
+        // Keep getting input until wallet is valid
+        while (!client->isWalletValid())
+        {
+            std::cout << "Invalid wallet cash\n";
+            std::cout << "Enter wallet cash again: ";
+            std::cin >> wallet;
+
+            // Reset value
+            client->wallet = wallet;
+        }
     }
-}
-void setup::printCommands()
-{
-    std::cout << "Commands:\n";
-    std::cout << "c        = Get wallet cash\n";
-    std::cout << "s        = Get current savings\n";
-    std::cout << "d <cash> = Deposit <cash> to bank\n";
-    std::cout << "w <cash> = Withdraw <cash> from bank\n";
-    std::cout << "da       = Deposit all cash to bank\n";
-    std::cout << "wa       = Withdraw all cash from bank\n";
-    std::cout << "q        = Quit program\n";
-}
+
+    void printCommands()
+    {
+        std::cout << "Commands:\n";
+        std::cout << "c        = Get wallet cash\n";
+        std::cout << "s        = Get current savings\n";
+        std::cout << "d <cash> = Deposit <cash> to bank\n";
+        std::cout << "w <cash> = Withdraw <cash> from bank\n";
+        std::cout << "da       = Deposit all cash to bank\n";
+        std::cout << "wa       = Withdraw all cash from bank\n";
+        std::cout << "q        = Quit program\n";
+    }
+
+    void printWallet(const Client& client)
+    {
+        std::cout << "Cash in wallet: " << client.wallet << "\n";
+    }
+
+    void printSavings(const Bank& bank)
+    {
+        std::cout << "Current savings: " << bank.getSavings() << "\n";
+    }
+
+    void deposit(Bank* bank)
+    {
+        int cash{};
+        std::cout << "Amount: ";
+        std::cin >> cash;
+
+        if (bank->deposit(cash))
+        {
+            std::cout << "Deposited " << cash << " to bank\n";
+        }
+        else
+        {
+            std::cout << "Failed to deposit cash\n";
+        }
+    }
+
+    void withdraw(Bank* bank)
+    {
+        int cash{};
+        std::cout << "Amount: ";
+        std::cin >> cash;
+
+        if (bank->withdraw(cash))
+        {
+            std::cout << "Withdrawn " << cash << " from bank\n";
+        }
+        else
+        {
+            std::cout << "Failed to withdraw cash\n";
+        }
+    }
+
+    void depositAll(Bank* bank)
+    {
+        if (bank->depositAll())
+        {
+            std::cout << "Deposited all cash to bank\n";
+        }
+        else
+        {
+            std::cout << "Failed to deposit cash\n";
+        }
+    }
+
+    void withdrawAll(Bank* bank)
+    {
+        if (bank->withdrawAll())
+        {
+            std::cout << "Withdrawn all cash from bank\n";
+        }
+        else
+        {
+            std::cout << "Failed to withdraw cash\n";
+        }
+    }
+} // namespace setup
