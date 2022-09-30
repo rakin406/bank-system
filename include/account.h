@@ -10,7 +10,7 @@ struct Account
 {
     std::string_view name{}; // Client name
     unsigned int age{};      // Client age
-    int wallet{};            // Money in client's wallet
+    unsigned int wallet{};   // Money in client's wallet
 
     bool operator==(const Account& acc) const
     {

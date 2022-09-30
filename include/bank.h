@@ -21,7 +21,7 @@ public:
      *
      * @return true if account is created.
      */
-    bool createAccount(Account* account, int initialDeposit);
+    bool createAccount(Account* account, unsigned int initialDeposit);
 
     /**
      * @brief Ensure account is not null and does exist.
@@ -37,7 +37,7 @@ public:
      *
      * @return true if deposit is successful.
      */
-    bool deposit(int amount);
+    bool deposit(unsigned int amount);
 
     /**
      * @brief Withdraw money from bank.
@@ -46,19 +46,19 @@ public:
      *
      * @return true if withdrawal is successful.
      */
-    bool withdraw(int amount);
+    bool withdraw(unsigned int amount);
 
     /**
      * @brief Get the amount of savings for client.
      *
      * @return integer of savings.
      */
-    [[nodiscard]] int getSavings() const;
+    [[nodiscard]] unsigned int getSavings() const;
 
 private:
     // std::string_view password;
     Account* m_account{ nullptr }; // Client account
-    int m_savings{ 0 };            // Money savings in bank
+    unsigned int m_savings{ 0 };   // Money savings in bank
 };
 
 #endif
