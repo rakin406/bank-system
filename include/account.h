@@ -32,6 +32,13 @@ struct Account
     [[nodiscard]] bool isAgeValid() const;
 
     /**
+     * @brief Return true if client's wallet is valid.
+     *
+     * @return boolean.
+     */
+    [[nodiscard]] bool isWalletValid() const;
+
+    /**
      * @brief Return true if all account informations are valid.
      *
      * @return boolean.

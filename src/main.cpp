@@ -129,6 +129,7 @@ void setup::getCorrectInput(Account* account)
 {
     std::string name{};
     int age{};
+    int wallet{};
 
     // Keep getting input until account is valid
     while (!account->isValid())
@@ -145,9 +146,16 @@ void setup::getCorrectInput(Account* account)
             std::cout << "Enter age again: ";
             std::cin >> age;
         }
+        else if (!account->isWalletValid())
+        {
+            std::cout << "Invalid wallet cash\n";
+            std::cout << "Enter wallet cash again: ";
+            std::cin >> wallet;
+        }
 
         // Reset values
         account->name = name;
         account->age = age;
+        account->wallet = wallet;
     }
 }

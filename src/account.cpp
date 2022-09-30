@@ -12,6 +12,8 @@ bool Account::isNameValid() const { return !name.empty(); }
 
 bool Account::isAgeValid() const { return age >= MINIMUM_AGE; }
 
+bool Account::isWalletValid() const { return wallet > 0; }
+
 bool Account::isValid() { return isNameValid() && isAgeValid(); }
 
 void Account::format() { name = utils::trim(name); }

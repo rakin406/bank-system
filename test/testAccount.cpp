@@ -30,6 +30,10 @@ TEST_CASE("Account::isAgeValid() returns correct boolean"
 {
     Account account{};
 
+    // Negative age check
+    account.age = -20;
+    REQUIRE(account.isAgeValid() == false);
+
     // Underage check
     account.age = 15;
     REQUIRE(account.isAgeValid() == false);
@@ -41,6 +45,22 @@ TEST_CASE("Account::isAgeValid() returns correct boolean"
     // >18YO check
     account.age = 30;
     REQUIRE(account.isAgeValid() == true);
+}
+
+TEST_CASE("Account::isWalletValid() returns correct boolean"
+          "(pass)",
+          "[multi-file:2]")
+{
+    Account account{};
+
+    account.wallet = 0;
+    REQUIRE(account.isWalletValid() == false);
+
+    account.wallet = -1500;
+    REQUIRE(account.isWalletValid() == false);
+
+    account.wallet = 3000;
+    REQUIRE(account.isWalletValid() == true);
 }
 
 TEST_CASE("Account::isValid() returns correct boolean"
