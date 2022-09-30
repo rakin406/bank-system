@@ -19,9 +19,9 @@ namespace setup
 int main()
 {
     std::string name{};
-    unsigned int age{};
-    unsigned int wallet{};
-    unsigned int initialDeposit{};
+    int age{};
+    int wallet{};
+    int initialDeposit{};
 
     std::cout << "Enter name: ";
     std::getline(std::cin >> std::ws, name);
@@ -29,18 +29,10 @@ int main()
     std::cin >> age;
     std::cout << "Enter wallet cash: ";
     std::cin >> wallet;
-    std::cout << "Enter initial deposit: ";
-    std::cin >> initialDeposit;
 
-    while ((initialDeposit > wallet) || (initialDeposit == 0))
-    {
-        std::cout << "\n";
-        std::cout << "Incorrect deposit\n";
-        std::cout << "Enter initial deposit again: ";
-        std::cin >> initialDeposit;
-    }
-
-    Account account{ static_cast<std::string_view>(name), age, wallet };
+    Account account{ static_cast<std::string_view>(name),
+                     static_cast<unsigned int>(age),
+                     static_cast<unsigned int>(wallet) };
 
     if (!account.isValid())
     {
@@ -51,6 +43,17 @@ int main()
     std::cout << "Account is valid!\n";
 
     Bank bank{};
+
+    std::cout << "Enter initial deposit: ";
+    std::cin >> initialDeposit;
+
+    while ((initialDeposit > wallet) || (initialDeposit <= 0))
+    {
+        std::cout << "\n";
+        std::cout << "Incorrect deposit\n";
+        std::cout << "Enter initial deposit again: ";
+        std::cin >> initialDeposit;
+    }
 
     if (bank.createAccount(&account, initialDeposit))
     {
@@ -127,7 +130,7 @@ int main()
 void setup::getCorrectInput(Account* account)
 {
     std::string name{};
-    unsigned int age{};
+    int age{};
 
     // Keep getting input until account is valid
     while (!account->isValid())
