@@ -19,14 +19,6 @@ TEST_CASE("Bank::accountExists() returns false on initialization"
     REQUIRE(bank.accountExists() == false);
 }
 
-TEST_CASE("Bank::isEligible() returns false on initialization"
-          "(pass)",
-          "[multi-file:2]")
-{
-    Bank bank;
-    REQUIRE(bank.isEligible() == false);
-}
-
 TEST_CASE("Bank::deposit() returns true on successful deposit"
           "(pass)",
           "[multi-file:2]")

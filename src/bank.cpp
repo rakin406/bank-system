@@ -9,7 +9,6 @@ bool Bank::createAccount(Account* account, int initialDeposit)
 
     if (account->isValid())
     {
-        m_eligible = true;
         m_account = account;
         deposit(initialDeposit);
         return true; // Account is successfuly registered
@@ -18,8 +17,6 @@ bool Bank::createAccount(Account* account, int initialDeposit)
 }
 
 bool Bank::accountExists() { return m_account != nullptr; }
-
-bool Bank::isEligible() const { return m_eligible; }
 
 bool Bank::deposit(int amount)
 {

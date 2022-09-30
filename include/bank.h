@@ -31,13 +31,6 @@ public:
     bool accountExists();
 
     /**
-     * @brief Return true if account is eligible for bank.
-     *
-     * @return boolean.
-     */
-    [[nodiscard]] bool isEligible() const;
-
-    /**
      * @brief Deposit money to bank.
      *
      * @param amount Amount of money.
@@ -65,7 +58,6 @@ public:
 private:
     // std::string_view password;
     Account* m_account{ nullptr }; // Client account
-    bool m_eligible{ false };      // Boolean for bank allowance
     int m_savings{ 0 };            // Money savings in bank
 };
 
