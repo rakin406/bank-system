@@ -17,8 +17,6 @@ namespace setup
 
 int main()
 {
-    Bank bank;
-
     std::string name{};
     unsigned int age{};
     int wallet{};
@@ -51,6 +49,8 @@ int main()
 
     std::cout << "\n";
     std::cout << "Account is valid!\n";
+
+    Bank bank{};
 
     if (bank.createAccount(&account, initialDeposit))
     {
