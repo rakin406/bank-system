@@ -5,7 +5,7 @@
 
 namespace
 {
-    constexpr unsigned int MINIMUM_AGE = 18;
+    constexpr int MINIMUM_AGE = 18;
 }
 
 bool Account::isNameValid() const { return !name.empty(); }

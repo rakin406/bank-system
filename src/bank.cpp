@@ -2,7 +2,7 @@
 #include "../include/account.h"
 #include "../include/utils.h"
 
-bool Bank::createAccount(Account* account, unsigned int initialDeposit)
+bool Bank::createAccount(Account* account, int initialDeposit)
 {
     // Remove leading and trailing white spaces in account information
     account->format();
@@ -18,7 +18,7 @@ bool Bank::createAccount(Account* account, unsigned int initialDeposit)
 
 bool Bank::accountExists() { return m_account != nullptr; }
 
-bool Bank::deposit(unsigned int amount)
+bool Bank::deposit(int amount)
 {
     if ((amount > 0) && (accountExists()) && (m_account->wallet - amount > 0))
     {
@@ -30,7 +30,7 @@ bool Bank::deposit(unsigned int amount)
     return false;
 }
 
-bool Bank::withdraw(unsigned int amount)
+bool Bank::withdraw(int amount)
 {
     if ((amount > 0) && (accountExists()) && (m_savings - amount > 0))
     {
@@ -42,4 +42,4 @@ bool Bank::withdraw(unsigned int amount)
     return false;
 }
 
-unsigned int Bank::getSavings() const { return m_savings; }
+int Bank::getSavings() const { return m_savings; }

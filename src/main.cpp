@@ -30,9 +30,7 @@ int main()
     std::cout << "Enter wallet cash: ";
     std::cin >> wallet;
 
-    Account account{ static_cast<std::string_view>(name),
-                     static_cast<unsigned int>(age),
-                     static_cast<unsigned int>(wallet) };
+    Account account{ static_cast<std::string_view>(name), age, wallet };
 
     if (!account.isValid())
     {
@@ -73,7 +71,7 @@ int main()
 
     bool prompt{ true };
     char command{};
-    unsigned int cash{};
+    int cash{};
 
     // FIX: Broken input
     while (prompt)
