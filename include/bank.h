@@ -5,7 +5,7 @@
 
 #include <string_view>
 
-// TODO: Implement SQL for client saving
+// TODO: Implement JSON for loading bank information
 
 /**
  * @brief This class is for client management and money transactions.
@@ -70,7 +70,6 @@ public:
     [[nodiscard]] int getSavings() const;
 
 private:
-    // std::string_view password;
     Client* m_client{ nullptr }; // Client structure
     int m_savings{ 0 };          // Money savings in bank
 };

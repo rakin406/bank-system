@@ -27,8 +27,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(cotire)
 
-# Download unit testing framework
+# Download dependencies
 include(cmake/CPM.cmake)
+CPMAddPackage("gh:simdjson/simdjson@2.2.2")
 CPMAddPackage("gh:catchorg/Catch2@3.1.0")
 
 # Public libraries needed for both main executable and tests
@@ -43,6 +44,7 @@ add_executable(${PROJECT_NAME}
     src/setup.cpp)
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_link_libraries(${PROJECT_NAME} PUBLIC lib)
+target_link_libraries(${PROJECT_NAME} PRIVATE simdjson)
 
 # Same here for tests
 add_executable(tests
