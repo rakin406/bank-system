@@ -90,12 +90,15 @@ void Bank::saveToFile()
 {
     using nlohmann::json;
 
-    // Store member variable values in JSON format
     json obj;
-    json client;
-    client["wallet"] = m_client->wallet;
-    client["savings"] = m_savings;
-    obj["client"] = client;
+
+    {
+        // Store member variables inside object
+        json client;
+        client["wallet"] = m_client->wallet;
+        client["savings"] = m_savings;
+        obj["client"] = client;
+    }
 
     // Write prettified JSON to file
     std::ofstream file{ static_cast<std::string>(JSON_FILE) };
