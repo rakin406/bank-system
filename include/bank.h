@@ -85,8 +85,8 @@ public:
     [[nodiscard]] int getSavings() const;
 
 private:
-    Client* m_client{}; // Client structure
-    int m_savings{};    // Money savings in bank
+    Client* m_client{ nullptr }; // Client structure
+    int m_savings{ 0 };          // Money savings in bank
 
     /**
      * @brief Save bank and client information to JSON file

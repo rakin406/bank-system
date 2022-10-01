@@ -115,7 +115,10 @@ void Bank::loadFromFile()
 
     json data{ json::parse(file) };
 
-    // FIX: Segmentation fault
+    // Client pointer needs to point to something otherwise segfault will occur
+    Client dummy{};
+    m_client = &dummy;
+
     m_client->wallet = data["client"]["wallet"];
     m_savings = data["client"]["savings"];
 }
