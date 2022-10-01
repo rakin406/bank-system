@@ -29,7 +29,7 @@ include(cotire)
 
 # Download dependencies
 include(cmake/CPM.cmake)
-CPMAddPackage("gh:simdjson/simdjson@2.2.2")
+CPMAddPackage("gh:nlohmann/json@3.11.2")
 CPMAddPackage("gh:catchorg/Catch2@3.1.0")
 
 # Public libraries needed for both main executable and tests
@@ -44,7 +44,7 @@ add_executable(${PROJECT_NAME}
     src/setup.cpp)
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_link_libraries(${PROJECT_NAME} PUBLIC lib)
-target_link_libraries(${PROJECT_NAME} PRIVATE simdjson)
+target_link_libraries(${PROJECT_NAME} PRIVATE nlohmann_json::nlohmann_json)
 
 # Same here for tests
 add_executable(tests
