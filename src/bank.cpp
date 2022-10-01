@@ -114,6 +114,8 @@ void Bank::loadFromFile()
     }
 
     json data{ json::parse(file) };
+
+    // FIX: Segmentation fault
     m_client->wallet = data["client"]["wallet"];
     m_savings = data["client"]["savings"];
 }
