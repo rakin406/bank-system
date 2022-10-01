@@ -38,7 +38,9 @@ add_library(lib
     src/client.cpp)
 
 # Make executable link against library
-add_executable(${PROJECT_NAME} src/main.cpp)
+add_executable(${PROJECT_NAME}
+    src/main.cpp
+    src/setup.cpp)
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_link_libraries(${PROJECT_NAME} PUBLIC lib)
 
