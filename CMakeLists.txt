@@ -23,10 +23,6 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Load module for speeding up builds
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
-include(cotire)
-
 # Download dependencies
 include(cmake/CPM.cmake)
 CPMAddPackage("gh:nlohmann/json@3.11.2")
@@ -53,6 +49,3 @@ add_executable(tests
     test/testClient.cpp)
 target_link_libraries(tests PUBLIC lib)
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
-
-# Speed up both builds
-cotire(${PROJECT_NAME} tests)
