@@ -7,7 +7,7 @@
 
 namespace
 {
-    constexpr std::string_view WHITESPACE = " \n\r\t\f\v";
+    constexpr std::string_view WHITESPACE{ " \n\r\t\f\v" };
 }
 
 namespace utils
