@@ -5,8 +5,6 @@
 
 #include <string_view>
 
-// TODO: Implement JSON for loading bank information
-
 /**
  * @brief This class is for client management and money transactions.
  */
@@ -17,6 +15,11 @@ public:
      * @brief Bank constructor.
      */
     Bank();
+
+    /**
+     * @brief Bank destructor.
+     */
+    ~Bank();
 
     /**
      * @brief Register bank client with necessary information.
@@ -68,6 +71,13 @@ public:
     bool withdrawAll();
 
     /**
+     * @brief Get registered client.
+     *
+     * @return client.
+     */
+    [[nodiscard]] const Client& getClient() const;
+
+    /**
      * @brief Get the amount of savings for client.
      *
      * @return integer of savings.
@@ -80,17 +90,13 @@ private:
 
     /**
      * @brief Save bank and client information to JSON file
-     *
-     * @return true if save is successful.
      */
-    bool saveToFile();
+    void saveToFile();
 
     /**
      * @brief Load bank and client information from JSON file
-     *
-     * @return true if load is successful.
      */
-    bool loadFromFile();
+    void loadFromFile();
 };
 
 #endif

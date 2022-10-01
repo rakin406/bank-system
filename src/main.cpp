@@ -3,54 +3,73 @@
 #include "../include/setup.h"
 #include "../include/utils.h"
 
+#include <atomic>
+#include <csignal>
 #include <iostream>
 #include <string>
 #include <string_view>
 
+namespace
+{
+    std::atomic<bool> quit{ false };
+    void signalHandler(int signal)
+    {
+        (void)signal; // Unused parameter
+        quit = true;
+    }
+} // namespace
+
 int main()
 {
-    int wallet{};
-    int initialDeposit{};
-
-    std::cout << "Enter wallet cash: ";
-    std::cin >> wallet;
-
-    Client client{ wallet };
-
-    if (!client.isWalletValid())
-    {
-        setup::getCorrectInput(&client);
-    }
-
-    std::cout << "\n";
-    std::cout << "Client is valid!\n";
-
     Bank bank{};
 
-    std::cout << "Enter initial deposit: ";
-    std::cin >> initialDeposit;
-
-    while ((initialDeposit > wallet) || (initialDeposit <= 0))
+    // Create client if it doesn't exist
+    if (!bank.clientExists())
     {
+        int wallet{};
+        int initialDeposit{};
+
+        std::cout << "Enter wallet cash: ";
+        std::cin >> wallet;
+
+        Client client{ wallet };
+
+        if (!client.isWalletValid())
+        {
+            setup::getCorrectInput(&client);
+        }
+
         std::cout << "\n";
-        std::cout << "Incorrect deposit\n";
-        std::cout << "Enter initial deposit again: ";
-        std::cin >> initialDeposit;
-    }
+        std::cout << "Client is valid!\n";
 
-    if (bank.registerClient(&client, initialDeposit))
-    {
-        std::cout << "Client registered to bank successfully!\n";
-    }
-    else
-    {
-        std::cout << "Could not register client to bank\n";
+        std::cout << "Enter initial deposit: ";
+        std::cin >> initialDeposit;
+
+        while ((initialDeposit > wallet) || (initialDeposit <= 0))
+        {
+            std::cout << "\n";
+            std::cout << "Incorrect deposit\n";
+            std::cout << "Enter initial deposit again: ";
+            std::cin >> initialDeposit;
+        }
+
+        if (bank.registerClient(&client, initialDeposit))
+        {
+            std::cout << "Client registered to bank successfully!\n";
+        }
+        else
+        {
+            std::cout << "Could not register client to bank\n";
+        }
     }
 
     setup::printCommands();
 
     bool prompt{ true };
     std::string command{};
+
+    // Install a signal handler
+    std::signal(SIGINT, signalHandler);
 
     // FIX: Broken input
     while (prompt)
@@ -63,7 +82,7 @@ int main()
 
         if (command == "c")
         {
-            setup::printWallet(client);
+            setup::printWallet(bank.getClient());
         }
         else if (command == "s")
         {
@@ -92,6 +111,12 @@ int main()
         else
         {
             std::cout << "Please provide a proper command\n";
+        }
+
+        // Stop program if user presses ctrl-c
+        if (quit)
+        {
+            break;
         }
     }
 

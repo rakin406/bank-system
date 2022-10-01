@@ -16,6 +16,8 @@ namespace
 
 Bank::Bank() { loadFromFile(); }
 
+Bank::~Bank() { saveToFile(); }
+
 bool Bank::registerClient(Client* client, int initialDeposit)
 {
     if (client->isWalletValid() && initialDeposit > 0)
@@ -79,35 +81,39 @@ bool Bank::withdrawAll()
     return false;
 }
 
+// TODO: Test this
+const Client& Bank::getClient() const { return *m_client; }
+
 int Bank::getSavings() const { return m_savings; }
 
-bool Bank::saveToFile()
+void Bank::saveToFile()
 {
     using nlohmann::json;
 
     // Store member variable values in JSON format
-    json data{ { "client",
-                 { { "wallet", m_client->wallet },
-                   { "savings", m_savings } } } };
+    json obj;
+    json client;
+    client["wallet"] = m_client->wallet;
+    client["savings"] = m_savings;
+    obj["client"] = client;
 
     // Write prettified JSON to file
     std::ofstream file{ static_cast<std::string>(JSON_FILE) };
-    return static_cast<bool>(file << std::setw(4) << data << std::endl);
+    file << std::setw(4) << obj << std::endl;
 }
 
-bool Bank::loadFromFile()
+void Bank::loadFromFile()
 {
     using nlohmann::json;
 
     std::ifstream file{ static_cast<std::string>(JSON_FILE) };
-    json data{ json::parse(file) };
 
-    if (file && data)
+    if (!file)
     {
-        m_client->wallet = data["client"]["wallet"];
-        m_savings = data["client"]["savings"];
-        return true;
+        return;
     }
 
-    return false;
+    json data{ json::parse(file) };
+    m_client->wallet = data["client"]["wallet"];
+    m_savings = data["client"]["savings"];
 }
